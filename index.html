@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Randi Works — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #15171C;
+    --surface: #1D2027;
+    --surface-line: #2A2E38;
+    --text-primary: #F3F1EA;
+    --text-secondary: #9BA1AD;
+    --accent: #E8A33D;
+    --accent-dim: #6B5327;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header / marquee strip */
+  header {
+    border-bottom: 1px solid var(--surface-line);
+    padding: 18px 0;
+  }
+
+  .marquee {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .marquee .dot {
+    color: var(--accent);
+  }
+
+  /* Hero */
+  .hero {
+    padding: 88px 0 56px;
+  }
+
+  .eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+
+  .hero p.lede {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 52ch;
+  }
+
+  /* About paragraph section */
+  .about {
+    padding: 8px 0 64px;
+    border-bottom: 1px solid var(--surface-line);
+  }
+
+  .about h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+
+  .about p {
+    font-size: 1rem;
+    color: var(--text-primary);
+    max-width: 62ch;
+  }
+
+  .placeholder-note {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.82rem;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px dashed var(--accent);
+    padding: 6px 10px;
+    border-radius: 4px;
+  }
+
+  /* Project card */
+  .project-section {
+    padding: 64px 0 96px;
+  }
+
+  .project-section > h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--surface-line);
+    border-radius: 8px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .card:hover {
+    border-color: var(--accent-dim);
+    transform: translateY(-2px);
+  }
+
+  .card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .card .tag {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 3px 9px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+  }
+
+  .card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    color: var(--text-secondary);
+    margin-bottom: 22px;
+    max-width: 54ch;
+  }
+
+  .play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 4px;
+    transition: filter 0.15s ease;
+  }
+
+  .play-btn:hover {
+    filter: brightness(1.1);
+  }
+
+  .play-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .status-line {
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  .status-line .live-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 6px;
+  }
+
+  footer {
+    border-top: 1px solid var(--surface-line);
+    padding: 28px 0 40px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 64px 0 40px; }
+    .card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="marquee">
+      <span>Randi Works</span>
+      <span><span class="dot">●</span> Portfolio</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Game Development</div>
+    <h1>Building playable ideas,<br>one round at a time.</h1>
+    <p class="lede">A working portfolio for projects in progress — starting with a mobile fighting game built in Godot 4.</p>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p>
+      [Write your paragraph here. A couple of sentences about who you are, what
+      you're working on, and what you're looking for — whether that's feedback,
+      collaborators, or opportunities. Keep it in your own voice.]
+    </p>
+    <span class="placeholder-note">Replace this paragraph before publishing</span>
+  </div>
+</section>
+
+<section class="project-section">
+  <div class="wrap">
+    <h2>Featured Project</h2>
+    <div class="card">
+      <span class="tag">Godot 4 · Mobile</span>
+      <h3>Beatdown Balcony</h3>
+      <p>A work-in-progress mobile fighting game built in Godot 4. Playable directly in your browser — no download required.</p>
+      <a class="play-btn" href="/BeatdownBalcony/">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        Play now
+      </a>
+      <div class="status-line"><span class="live-dot"></span>In active development</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    randiworks.org
+  </div>
+</footer>
+
+</body>
+</html>
